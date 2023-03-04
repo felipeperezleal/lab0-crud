@@ -9,13 +9,14 @@
     <title>CRUD</title>
 </head>
 <body>
-    <h1 class="text-center mt-5 nb-5 text-primary">CRUD</h1>
+    <!-------------------------------------------------- Persona -------------------------------------------------->
+    <h1 class="text-center mt-5 nb-5 text-primary">Persona</h1>
 
     <div class="container">
         <div class="card shadow">
             <div class="card-body">
                 <!-- Formulario - Persona -->
-                <form action="" method="POST">
+                <form action="/persona" method="POST">
                     <div class="row mb-3">
                         <div class="col">
                             <label>Nombre</label>
@@ -51,6 +52,211 @@
                         <th scope="col">Editar</th>
                         <th scope="col">Borrar</th>
                     </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.nombre}}</td>
+                            <td>{{i.telefono}}</td>
+                            <td>{{i.edad}}</td>
+                            <td>{{i.sexo}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id}}">Editar</button></td>
+                            <td><a href="{{url_for('delete', id=i.id)}}" class="btn btn-danger btn-sm">Borrar</a></td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{i.nombre}}</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/edit/{{i.id}}" method="post"></form>
+                                        <label>Nombre</label>
+                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
+                                        <label>Teléfono</label>
+                                        <input type="text" class="form-control mb-3" name="telefono" value="{{i.telefono}}">
+                                        <label>Edad</label>
+                                        <input type="text" class="form-control mb-3" name="edad" value="{{i.edad}}">
+                                        <label>Sexo</label>
+                                        <input type="text" class="form-control mb-3" name="sexo" value="{{i.sexo}}">
+                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar persona</button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------- Vivienda -------------------------------------------------->
+
+    <h1 class="text-center mt-5 nb-5 text-primary">Vivienda</h1>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <!-- Formulario - Vivienda -->
+                <form action="/vivienda" method="POST">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label>Dirección</label>
+                            <input type="text" class="form-control mb-3" name="direccion">
+                        </div>
+                        <div class="col">
+                            <label>Capacidad</label>
+                            <input type="text" class="form-control mb-3" name="capacidad">
+                        </div>
+                        <div class="col">
+                            <label>Niveles</label>
+                            <input type="text" class="form-control mb-3" name="niveles">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar vivienda</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla -->
+
+                <table class="table table-bordered">
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Capacidad</th>
+                        <th scope="col">Niveles</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.direccion}}</td>
+                            <td>{{i.capacidad}}</td>
+                            <td>{{i.niveles}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id}}">Editar</button></td>
+                            <td><a href="{{url_for('delete', id=i.id)}}" class="btn btn-danger btn-sm">Borrar</a></td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Vivienda</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/edit/{{i.id}}" method="post"></form>
+                                        <label>Dirección</label>
+                                        <input type="text" class="form-control mb-3" name="direccion" value="{{i.direccion}}">
+                                        <label>Capacidad</label>
+                                        <input type="text" class="form-control mb-3" name="capacidad" value="{{i.capacidad}}">
+                                        <label>Niveles</label>
+                                        <input type="text" class="form-control mb-3" name="niveles" value="{{i.niveles}}">
+                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar vivienda</button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------------------- Municipio -------------------------------------------------->
+
+    <h1 class="text-center mt-5 nb-5 text-primary">Municipio</h1>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <!-- Formulario - Municipio -->
+                <form action="/municipio" method="POST">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control mb-3" name="nombre">
+                        </div>
+                        <div class="col">
+                            <label>Área</label>
+                            <input type="text" class="form-control mb-3" name="area">
+                        </div>
+                        <div class="col">
+                            <label>Presupuesto</label>
+                            <input type="text" class="form-control mb-3" name="presupuesto">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar municipio</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla -->
+
+                <table class="table table-bordered">
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Área</th>
+                        <th scope="col">Presupuesto</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Borrar</th>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <td>{{i.id}}</td>
+                            <td>{{i.nombre}}</td>
+                            <td>{{i.area}}</td>
+                            <td>{{i.presupuesto}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id}}">Editar</button></td>
+                            <td><a href="{{url_for('delete', id=i.id)}}" class="btn btn-danger btn-sm">Borrar</a></td>
+                        </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{i.nombre}}</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/edit/{{i.id}}" method="post"></form>
+                                        <label>Nombre</label>
+                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
+                                        <label>Área</label>
+                                        <input type="text" class="form-control mb-3" name="area" value="{{i.area}}">
+                                        <label>Presupuesto</label>
+                                        <input type="text" class="form-control mb-3" name="presupuesto" value="{{i.presupuesto}}">
+                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar municipio</button>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
         </div>
