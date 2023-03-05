@@ -75,9 +75,10 @@ def updatePersona(id):
 #-----------------------------------Rutas Persona------------------------------------#
 
 # Para ejecutar:
-# Instalar Flask (en consola: pip install Flask)
+# Instalar Flask (en consola: pip install Flask)------> Flask lo instalé en un virtual environment llamado venv, si quieren usarlo también hagan: python -m venv venv, una vez creado escriban ./venv/Scripts/activate
 # Archivo app.py ubicado en ./src/app.py
 # Ejecutar el archivo en la consola con el comando "python app.py"
+
 
 #Ejecutando la app
 if __name__ == '__main__':
