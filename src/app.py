@@ -11,6 +11,8 @@ app = Flask(__name__, template_folder=template_dir)
 #Rutas
 @app.route('/')
 def home():
+    #Conectando con la base de datos
+    #Para cambiar credenciales, dirigirse al archivo ./src/database.py
     cursor = db.database.cursor()
     cursor.execute("SELECT * FROM persona")
     myresult = cursor.fetchall()
@@ -41,8 +43,9 @@ def addPersona():
     
     return redirect(url_for('home'))
 
+#Ruta para borrar persona
 @app.route('/delete/<string:id>')
-def delete(id):
+def deletePersona(id):
     cursor = db.database.cursor()
     sql = "DELETE FROM persona WHERE id=%s"
     data = (id)
@@ -51,8 +54,9 @@ def delete(id):
 
     return redirect(url_for('home'))
 
-@app.route('/edit/<string:id>', methods=['POST'])
-def edit(id):
+#Ruta para actualizar persona
+@app.route('/update/<string:id>', methods=['POST'])
+def updatePersona(id):
     #Haciendo request a los datos
     nombre = request.form['nombre']
     telefono = request.form['telefono']
@@ -69,6 +73,11 @@ def edit(id):
     return redirect(url_for('home'))
 
 #-----------------------------------Rutas Persona------------------------------------#
+
+# Para ejecutar:
+# Instalar Flask (en consola: pip install Flask)
+# Archivo app.py ubicado en ./src/app.py
+# Ejecutar el archivo en la consola con el comando "python app.py"
 
 #Ejecutando la app
 if __name__ == '__main__':
