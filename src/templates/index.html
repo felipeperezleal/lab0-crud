@@ -81,23 +81,24 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/updatePersona/{{i.id_persona}}" method="post"></form>
+                                    <form action="/updatePersona/{{i.id_persona}}" method="post">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
+                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}" required>
                                         <label>Teléfono</label>
-                                        <input type="text" class="form-control mb-3" name="telefono" value="{{i.telefono}}">
+                                        <input type="text" class="form-control mb-3" name="telefono" value="{{i.telefono}}" required>
                                         <label>Edad</label>
-                                        <input type="text" class="form-control mb-3" name="edad" value="{{i.edad}}">
+                                        <input type="text" class="form-control mb-3" name="edad" value="{{i.edad}}" required>
                                         <label>Sexo</label>
-                                        <input type="text" class="form-control mb-3" name="sexo" value="{{i.sexo}}">
+                                        <input type="text" class="form-control mb-3" name="sexo" value="{{i.sexo}}" required>
                                         <label>CdF</label>
-                                        <input type="text" class="form-control mb-3" name="cdf" value="{{i.cdf}}">
+                                        <input type="text" class="form-control mb-3" name="cdf" pattern="^((?!None).)*$" value="{{i.cdf}}" required>
                                         <label>Hogar</label>
-                                        <input type="text" class="form-control mb-3" name="hogar" value="{{i.hogar}}">
+                                        <input type="text" class="form-control mb-3" name="hogar" pattern="^((?!None).)*$" value="{{i.hogar}}" required>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
+                                </form>
                               </div>
                             </div>
                           </div>
@@ -178,19 +179,20 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/updateVivienda/{{i.id_vivienda}}" method="post"></form>
+                                    <form action="/updateVivienda/{{i.id_vivienda}}" method="post">
                                         <label>Dirección</label>
-                                        <input type="text" class="form-control mb-3" name="direccion" value="{{i.direccion}}">
+                                        <input type="text" class="form-control mb-3" name="direccion" value="{{i.direccion}}" required>
                                         <label>Capacidad</label>
-                                        <input type="text" class="form-control mb-3" name="capacidad" value="{{i.capacidad}}">
+                                        <input type="text" class="form-control mb-3" name="capacidad" value="{{i.capacidad}}" required>
                                         <label>Niveles</label>
-                                        <input type="text" class="form-control mb-3" name="niveles" value="{{i.niveles}}">
+                                        <input type="text" class="form-control mb-3" name="niveles" value="{{i.niveles}}" required>
                                         <label>Ubicación</label>
-                                        <input type="text" class="form-control mb-3" name="ubicacion" value="{{i.ubicacion}}">
+                                        <input type="text" class="form-control mb-3" name="ubicacion" value="{{i.ubicacion}}" required>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
+                                </form>
                               </div>
                             </div>
                           </div>
@@ -263,19 +265,20 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/updateMunicipio/{{i.id_municipio}}" method="post"></form>
+                                    <form action="/updateMunicipio/{{i.id_municipio}}" method="post">
                                         <label>Nombre</label>
-                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
+                                        <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}" required>
                                         <label>Área</label>
-                                        <input type="text" class="form-control mb-3" name="area" value="{{i.area}}">
+                                        <input type="text" class="form-control mb-3" name="area" value="{{i.area}}" pattern="^((?!None).)*$" required>
                                         <label>Presupuesto</label>
-                                        <input type="text" class="form-control mb-3" name="presupuesto" value="{{i.presupuesto}}">
+                                        <input type="text" class="form-control mb-3" name="presupuesto" value="{{i.presupuesto}}" pattern="^((?!None).)*$" required>
                                         <label>Gobernador</label>
-                                        <input type="text" class="form-control mb-3" name="gobernador" value="{{i.gobernador}}">
+                                        <input type="text" class="form-control mb-3" name="gobernador" value="{{i.gobernador}}" required>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
+                                </form>
                               </div>
                             </div>
                           </div>
