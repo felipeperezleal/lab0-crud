@@ -35,6 +35,14 @@
                             <input type="text" class="form-control mb-3" name="sexo">
                         </div>
                         <div class="col">
+                            <label>CdF</label>
+                            <input type="text" class="form-control mb-3" name="cdf">
+                        </div>
+                        <div class="col">
+                            <label>Hogar</label>
+                            <input type="text" class="form-control mb-3" name="hogar">
+                        </div>
+                        <div class="col">
                             <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar persona</button>
                         </div>
                     </div>
@@ -49,6 +57,8 @@
                         <th scope="col">Teléfono</th>
                         <th scope="col">Edad</th>
                         <th scope="col">Sexo</th>
+                        <th scope="col">CdF</th>
+                        <th scope="col">Hogar</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Borrar</th>
                     </thead>
@@ -60,6 +70,8 @@
                             <td>{{i.telefono}}</td>
                             <td>{{i.edad}}</td>
                             <td>{{i.sexo}}</td>
+                            <td>{{i.cdf}}</td>
+                            <td>{{i.hogar}}</td>
                             <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id_persona}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id_persona}}">Editar</button></td>
                             <td><a href="{{url_for('deletePersona', id=i.id_persona)}}" class="btn btn-danger btn-sm">Borrar</a></td>
                         </tr>
@@ -82,6 +94,10 @@
                                         <input type="text" class="form-control mb-3" name="edad" value="{{i.edad}}">
                                         <label>Sexo</label>
                                         <input type="text" class="form-control mb-3" name="sexo" value="{{i.sexo}}">
+                                        <label>CdF</label>
+                                        <input type="text" class="form-control mb-3" name="edad" value="{{i.cdf}}">
+                                        <label>Hogar</label>
+                                        <input type="text" class="form-control mb-3" name="sexo" value="{{i.hogar}}">
                                         <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar persona</button>
                                 </div>
                                 <div class="modal-footer">
@@ -121,6 +137,10 @@
                             <input type="text" class="form-control mb-3" name="niveles">
                         </div>
                         <div class="col">
+                            <label>Ubicación</label>
+                            <input type="text" class="form-control mb-3" name="ubicacion">
+                        </div>
+                        <div class="col">
                             <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar vivienda</button>
                         </div>
                     </div>
@@ -134,6 +154,7 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Capacidad</th>
                         <th scope="col">Niveles</th>
+                        <th scope="col">Ubicación</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Borrar</th>
                     </thead>
@@ -144,26 +165,29 @@
                             <td>{{i.direccion}}</td>
                             <td>{{i.capacidad}}</td>
                             <td>{{i.niveles}}</td>
-                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id_vivienda}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id_vivienda}}">Editar</button></td>
+                            <td>{{i.ubicacion}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-editVivienda{{i.id_vivienda}}" data-bs-toggle="modal" data-bs-target="#modalVivienda{{i.id_vivienda}}">Editar</button></td>
                             <td><a href="{{url_for('deleteVivienda', id=i.id_vivienda)}}" class="btn btn-danger btn-sm">Borrar</a></td>
                         </tr>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="modal{{i.id_vivienda}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalVivienda{{i.id_vivienda}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Vivienda</h1>
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{i.direccion}}</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/update/{{i.id_vivienda}}" method="post"></form>
+                                    <form action="/updateVivienda/{{i.id_vivienda}}" method="post"></form>
                                         <label>Dirección</label>
                                         <input type="text" class="form-control mb-3" name="direccion" value="{{i.direccion}}">
                                         <label>Capacidad</label>
                                         <input type="text" class="form-control mb-3" name="capacidad" value="{{i.capacidad}}">
                                         <label>Niveles</label>
                                         <input type="text" class="form-control mb-3" name="niveles" value="{{i.niveles}}">
+                                        <label>Ubicación</label>
+                                        <input type="text" class="form-control mb-3" name="ubicacion" value="{{i.ubicacion}}">
                                         <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar vivienda</button>
                                 </div>
                                 <div class="modal-footer">
@@ -203,6 +227,10 @@
                             <input type="text" class="form-control mb-3" name="presupuesto">
                         </div>
                         <div class="col">
+                            <label>Gobernador</label>
+                            <input type="text" class="form-control mb-3" name="gobernador">
+                        </div>
+                        <div class="col">
                             <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar municipio</button>
                         </div>
                     </div>
@@ -216,6 +244,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Área</th>
                         <th scope="col">Presupuesto</th>
+                        <th scope="col">Gobernador</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Borrar</th>
                     </thead>
@@ -226,12 +255,13 @@
                             <td>{{i.nombre}}</td>
                             <td>{{i.area}}</td>
                             <td>{{i.presupuesto}}</td>
-                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id_municipio}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id_municipio}}">Editar</button></td>
+                            <td>{{i.gobernador}}</td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-editMunicipio{{i.id_municipio}}" data-bs-toggle="modal" data-bs-target="#modalMunicipio{{i.id_municipio}}">Editar</button></td>
                             <td><a href="{{url_for('deleteMunicipio', id=i.id_municipio)}}" class="btn btn-danger btn-sm">Borrar</a></td>
                         </tr>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="modal{{i.id_municipio}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalMunicipio{{i.id_municipio}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -239,13 +269,15 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/update/{{i.id_municipio}}" method="post"></form>
+                                    <form action="/updateMunicipio/{{i.id_municipio}}" method="post"></form>
                                         <label>Nombre</label>
                                         <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
                                         <label>Área</label>
                                         <input type="text" class="form-control mb-3" name="area" value="{{i.area}}">
                                         <label>Presupuesto</label>
                                         <input type="text" class="form-control mb-3" name="presupuesto" value="{{i.presupuesto}}">
+                                        <label>Gobernador</label>
+                                        <input type="text" class="form-control mb-3" name="gobernador" value="{{i.gobernador}}">
                                         <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar municipio</button>
                                 </div>
                                 <div class="modal-footer">

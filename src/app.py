@@ -65,7 +65,7 @@ def addPersona():
     return redirect(url_for('home'))
 
 #Ruta para borrar persona
-@app.route('/delete/<string:id>')
+@app.route('/deletePersona/<string:id>')
 def deletePersona(id):
     cursor = db.database.cursor()
     sql = "DELETE FROM persona WHERE id=%s"
@@ -114,7 +114,7 @@ def addVivienda():
     return redirect(url_for('home'))
 
 #Ruta para borrar vivienda
-@app.route('/delete/<string:id>')
+@app.route('/deleteVivienda/<string:id>')
 def deleteVivienda(id):
     cursor = db.database.cursor()
     sql = "DELETE FROM vivienda WHERE id=%s"
@@ -125,16 +125,17 @@ def deleteVivienda(id):
     return redirect(url_for('home'))
 
 #Ruta para actualizar vivienda
-@app.route('/update/<string:id>', methods=['POST'])
+@app.route('/updateVivienda/<string:id>', methods=['POST'])
 def updateVivienda(id):
     #Haciendo request a los datos
     direccion = request.form['direccion']
     capacidad = request.form['capacidad']
     niveles = request.form['niveles']
+    ubicacion = request.form['ubicacion']
 
     if direccion and capacidad and niveles:
         cursor = db.database.cursor()
-        sql = "UPDATE vivienda SET direccion = %s, capacidad = %s, niveles = %s WHERE id = %s"
+        sql = "UPDATE vivienda SET direccion = %s, capacidad = %s, niveles = %s, ubicacion = %s WHERE id = %s"
         data = (direccion, capacidad, niveles, id)
         cursor.execute(sql, data)
         db.database.commit()
