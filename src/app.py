@@ -11,15 +11,15 @@ app = Flask(__name__, template_folder=template_dir)
 #Rutas
 @app.route('/')
 def home():
-    # cursor = db.database().cursor()
-    # cursor.execute("SELECT * FROM Persona")
-    # myresult = cursor.fetchall()
-    #Datos -> Dictionary
+    cursor = db.database.cursor()
+    cursor.execute("SELECT * FROM persona")
+    myresult = cursor.fetchall()
+    # Datos -> Dictionary
     insertObject = []
-    # columnNames = [column[0] for column in cursor.description]
-    # for record in myresult:
-    #     insertObject.append(dict(zip(columnNames, record)))
-    # cursor.close()
+    columnNames = [column[0] for column in cursor.description]
+    for record in myresult:
+        insertObject.append(dict(zip(columnNames, record)))
+    cursor.close()
     return render_template('index.html', data=insertObject)
 
 #-----------------------------------Rutas Persona------------------------------------#
@@ -34,7 +34,7 @@ def addPersona():
 
     if nombre and telefono and edad and sexo:
         cursor = db.database.cursor()
-        sql = "INSERT INTO PERSONA (nombre, telefono, edad, sexo) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO persona (nombre, telefono, edad, sexo) VALUES (%s, %s, %s, %s)"
         data = (nombre, telefono, edad, sexo)
         cursor.execute(sql, data)
         db.database.commit()
@@ -44,7 +44,7 @@ def addPersona():
 @app.route('/delete/<string:id>')
 def delete(id):
     cursor = db.database.cursor()
-    sql = "DELETE FROM PERSONA WHERE id=%s"
+    sql = "DELETE FROM persona WHERE id=%s"
     data = (id)
     cursor.execute(sql, data)
     db.database.commit()
@@ -61,7 +61,7 @@ def edit(id):
 
     if nombre and telefono and edad and sexo:
         cursor = db.database.cursor()
-        sql = "UPDATE PERSONA SET nombre = %s, telefono = %s, edad = %s, sexo = %s WHERE id = %s"
+        sql = "UPDATE persona SET nombre = %s, telefono = %s, edad = %s, sexo = %s WHERE id = %s"
         data = (nombre, telefono, edad, sexo, id)
         cursor.execute(sql, data)
         db.database.commit()

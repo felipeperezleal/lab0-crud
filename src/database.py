@@ -1,9 +1,8 @@
-#Connecting app with database
-# import mysql.connector
+import mysql.connector
 
-# database = mysql.connector.connect(
-#     host = '',
-#     user = '',
-#     password = '',
-#     database = ''
-# )
+database = mysql.connector.connect(
+    host = 'localhost',
+    user = 'root',
+    password = 'admin',
+    database = 'lab0db'
+)
