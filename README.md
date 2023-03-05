@@ -1,2 +1,2 @@
-# CRUD Lab 0
+# CRUD - Lab 0
 Ingeniería de Software II | Lab 0
