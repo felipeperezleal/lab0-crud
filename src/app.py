@@ -80,6 +80,7 @@ def deletePersona(id):
 @app.route('/updatePersona/<string:id>', methods=['POST'])
 def updatePersona(id):
     #Haciendo request a los datos
+    print("Entering here")
     nombre = request.form['nombre']
     telefono = request.form['telefono']
     edad = request.form['edad']
