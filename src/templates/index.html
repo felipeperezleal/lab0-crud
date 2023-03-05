@@ -138,7 +138,7 @@
                         <th scope="col">Borrar</th>
                     </thead>
                     <tbody>
-                        {% for i in data %}
+                        {% for i in dataVivienda %}
                         <tr>
                             <td>{{i.id_vivienda}}</td>
                             <td>{{i.direccion}}</td>
@@ -220,7 +220,7 @@
                         <th scope="col">Borrar</th>
                     </thead>
                     <tbody>
-                        {% for i in data %}
+                        {% for i in dataMunicipio %}
                         <tr>
                             <td>{{i.id_municipio}}</td>
                             <td>{{i.nombre}}</td>
@@ -239,7 +239,7 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/update/{{i.id}}" method="post"></form>
+                                    <form action="/update/{{i.id_municipio}}" method="post"></form>
                                         <label>Nombre</label>
                                         <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
                                         <label>Área</label>

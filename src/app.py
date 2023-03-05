@@ -14,6 +14,8 @@ def home():
     #Conectando con la base de datos
     #Para cambiar credenciales, dirigirse al archivo ./src/database.py
     cursor = db.database.cursor()
+
+    #Selecting persona objects
     cursor.execute("SELECT * FROM persona")
     myresult = cursor.fetchall()
     # Datos -> Dictionary
@@ -21,8 +23,27 @@ def home():
     columnNames = [column[0] for column in cursor.description]
     for record in myresult:
         insertObject.append(dict(zip(columnNames, record)))
+
+    #Selecting vivienda objects
+    cursor.execute("SELECT * FROM vivienda")
+    myresult = cursor.fetchall()
+    # Datos -> Dictionary
+    insertObjectVivienda = []
+    columnNames = [column[0] for column in cursor.description]
+    for record in myresult:
+        insertObjectVivienda.append(dict(zip(columnNames, record)))
+
+    #Selecting persona objects
+    cursor.execute("SELECT * FROM municipio")
+    myresult = cursor.fetchall()
+    # Datos -> Dictionary
+    insertObjectMunicipio = []
+    columnNames = [column[0] for column in cursor.description]
+    for record in myresult:
+        insertObjectMunicipio.append(dict(zip(columnNames, record)))
+
     cursor.close()
-    return render_template('index.html', data=insertObject)
+    return render_template('index.html', data=insertObject, dataVivienda=insertObjectVivienda, dataMunicipio=insertObjectMunicipio)
 
 #-----------------------------------Rutas Persona------------------------------------#
 #Ruta para añadir persona
@@ -85,7 +106,7 @@ def addVivienda():
 
     if direccion and capacidad and niveles:
         cursor = db.database.cursor()
-        sql = "INSERT INTO persona (nombre, telefono, edad, sexo) VALUES (%s, %s, %s, %s)"
+        sql = "INSERT INTO vivienda (direccion, capacidad, niveles) VALUES (%s, %s, %s)"
         data = (direccion, capacidad,niveles)
         cursor.execute(sql, data)
         db.database.commit()
@@ -113,7 +134,7 @@ def updateVivienda(id):
 
     if direccion and capacidad and niveles:
         cursor = db.database.cursor()
-        sql = "UPDATE persona SET nombre = %s, telefono = %s, edad = %s, sexo = %s WHERE id = %s"
+        sql = "UPDATE vivienda SET direccion = %s, capacidad = %s, niveles = %s WHERE id = %s"
         data = (direccion, capacidad, niveles, id)
         cursor.execute(sql, data)
         db.database.commit()
@@ -135,8 +156,8 @@ def addMunicipio():
     if nombre and gobernador:
         cursor = db.database.cursor()
         sql = "INSERT INTO municipio (nombre, area, presupuesto, gobernador) VALUES (%s, %s, %s, %s)"
-        data = (nombre, area, presupuesto, gobernador)
-        cursor.execute(sql, data)
+        dataMunicipio = (nombre, area, presupuesto, gobernador)
+        cursor.execute(sql, dataMunicipio)
         db.database.commit()
     
     return redirect(url_for('home'))
@@ -146,8 +167,8 @@ def addMunicipio():
 def deleteMunicipio(id):
     cursor = db.database.cursor()
     sql = "DELETE FROM municipio WHERE id=%s"
-    data = (id)
-    cursor.execute(sql, data)
+    dataMunicipio = (id)
+    cursor.execute(sql, dataMunicipio)
     db.database.commit()
 
     return redirect(url_for('home'))
