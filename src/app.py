@@ -74,6 +74,104 @@ def updatePersona(id):
 
 #-----------------------------------Rutas Persona------------------------------------#
 
+#-----------------------------------Rutas Vivienda------------------------------------#
+#Ruta para añadir vivienda
+@app.route('/vivienda', methods=['POST'])
+def addVivienda():
+    #Haciendo request a los datos
+    direccion = request.form['direccion']
+    capacidad = request.form['capacidad']
+    niveles = request.form['niveles']
+
+    if direccion and capacidad and niveles:
+        cursor = db.database.cursor()
+        sql = "INSERT INTO persona (nombre, telefono, edad, sexo) VALUES (%s, %s, %s, %s)"
+        data = (direccion, capacidad,niveles)
+        cursor.execute(sql, data)
+        db.database.commit()
+    
+    return redirect(url_for('home'))
+
+#Ruta para borrar vivienda
+@app.route('/delete/<string:id>')
+def deleteVivienda(id):
+    cursor = db.database.cursor()
+    sql = "DELETE FROM vivienda WHERE id=%s"
+    data = (id)
+    cursor.execute(sql, data)
+    db.database.commit()
+
+    return redirect(url_for('home'))
+
+#Ruta para actualizar vivienda
+@app.route('/update/<string:id>', methods=['POST'])
+def updateVivienda(id):
+    #Haciendo request a los datos
+    direccion = request.form['direccion']
+    capacidad = request.form['capacidad']
+    niveles = request.form['niveles']
+
+    if direccion and capacidad and niveles:
+        cursor = db.database.cursor()
+        sql = "UPDATE persona SET nombre = %s, telefono = %s, edad = %s, sexo = %s WHERE id = %s"
+        data = (direccion, capacidad, niveles, id)
+        cursor.execute(sql, data)
+        db.database.commit()
+    
+    return redirect(url_for('home'))
+
+#-----------------------------------Rutas Vivienda------------------------------------#
+
+#-----------------------------------Rutas Municipio-----------------------------------#
+#Ruta para añadir municipio
+@app.route('/municipio', methods=['POST'])
+def addMunicipio():
+    #Haciendo request a los datos
+    nombre = request.form['nombre']
+    area = request.form['area']
+    presupuesto = request.form['presupuesto']
+    gobernador = request.form['gobernador']
+
+    if nombre and gobernador:
+        cursor = db.database.cursor()
+        sql = "INSERT INTO municipio (nombre, area, presupuesto, gobernador) VALUES (%s, %s, %s, %s)"
+        data = (nombre, area, presupuesto, gobernador)
+        cursor.execute(sql, data)
+        db.database.commit()
+    
+    return redirect(url_for('home'))
+
+#Ruta para borrar municipio
+@app.route('/delete/<string:id>')
+def deleteMunicipio(id):
+    cursor = db.database.cursor()
+    sql = "DELETE FROM municipio WHERE id=%s"
+    data = (id)
+    cursor.execute(sql, data)
+    db.database.commit()
+
+    return redirect(url_for('home'))
+
+#Ruta para actualizar municipio
+@app.route('/update/<string:id>', methods=['POST'])
+def updateMunicipio(id):
+    #Haciendo request a los datos
+    nombre = request.form['nombre']
+    area = request.form['area']
+    presupuesto = request.form['presupuesto']
+    gobernador = request.form['gobernador']
+
+    if nombre and area and presupuesto and gobernador:
+        cursor = db.database.cursor()
+        sql = "UPDATE municipio SET nombre = %s, area = %s, presupuesto = %s, gobernador = %s WHERE id = %s"
+        data = (nombre, area, presupuesto, gobernador, id)
+        cursor.execute(sql, data)
+        db.database.commit()
+    
+    return redirect(url_for('home'))
+
+#-----------------------------------Rutas Municipio-----------------------------------#
+
 # Para ejecutar:
 # Instalar Flask (en consola: pip install Flask)------> Flask lo instalé en un virtual environment llamado venv, si quieren usarlo también hagan: python -m venv venv, una vez creado escriban ./venv/Scripts/activate
 # Archivo app.py ubicado en ./src/app.py
