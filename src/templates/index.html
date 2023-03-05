@@ -19,6 +19,10 @@
                 <form action="/persona" method="POST">
                     <div class="row mb-3">
                         <div class="col">
+                            <label>Documento</label>
+                            <input type="text" class="form-control mb-3" name="id_persona">
+                        </div>
+                        <div class="col">
                             <label>Nombre</label>
                             <input type="text" class="form-control mb-3" name="nombre">
                         </div>
@@ -33,14 +37,6 @@
                         <div class="col">
                             <label>Sexo</label>
                             <input type="text" class="form-control mb-3" name="sexo">
-                        </div>
-                        <div class="col">
-                            <label>CdF</label>
-                            <input type="text" class="form-control mb-3" name="cdf">
-                        </div>
-                        <div class="col">
-                            <label>Hogar</label>
-                            <input type="text" class="form-control mb-3" name="hogar">
                         </div>
                         <div class="col">
                             <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar persona</button>
@@ -72,12 +68,12 @@
                             <td>{{i.sexo}}</td>
                             <td>{{i.cdf}}</td>
                             <td>{{i.hogar}}</td>
-                            <td><button class="btn btn-primary btn-sm" id="btn-edit{{i.id_persona}}" data-bs-toggle="modal" data-bs-target="#modal{{i.id_persona}}">Editar</button></td>
+                            <td><button class="btn btn-primary btn-sm" id="btn-editPersona{{i.id_persona}}" data-bs-toggle="modal" data-bs-target="#modalPersona{{i.id_persona}}">Editar</button></td>
                             <td><a href="{{url_for('deletePersona', id=i.id_persona)}}" class="btn btn-danger btn-sm">Borrar</a></td>
                         </tr>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="modal{{i.id_persona}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="modalPersona{{i.id_persona}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -85,7 +81,7 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/update/{{i.id_persona}}" method="post"></form>
+                                    <form action="/updatePersona/{{i.id_persona}}" method="post"></form>
                                         <label>Nombre</label>
                                         <input type="text" class="form-control mb-3" name="nombre" value="{{i.nombre}}">
                                         <label>Teléfono</label>
@@ -98,9 +94,9 @@
                                         <input type="text" class="form-control mb-3" name="edad" value="{{i.cdf}}">
                                         <label>Hogar</label>
                                         <input type="text" class="form-control mb-3" name="sexo" value="{{i.hogar}}">
-                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar persona</button>
                                 </div>
                                 <div class="modal-footer">
+
                                   <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                               </div>
@@ -124,6 +120,10 @@
                 <!-- Formulario - Vivienda -->
                 <form action="/vivienda" method="POST">
                     <div class="row mb-3">
+                        <div class="col">
+                            <label>ID Vivienda</label>
+                            <input type="text" class="form-control mb-3" name="id_vivienda">
+                        </div>
                         <div class="col">
                             <label>Dirección</label>
                             <input type="text" class="form-control mb-3" name="direccion">
@@ -188,7 +188,6 @@
                                         <input type="text" class="form-control mb-3" name="niveles" value="{{i.niveles}}">
                                         <label>Ubicación</label>
                                         <input type="text" class="form-control mb-3" name="ubicacion" value="{{i.ubicacion}}">
-                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar vivienda</button>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Guardar</button>
@@ -215,16 +214,12 @@
                 <form action="/municipio" method="POST">
                     <div class="row mb-3">
                         <div class="col">
+                            <label>Núm. Municipio</label>
+                            <input type="text" class="form-control mb-3" name="id_municipio">
+                        </div>
+                        <div class="col">
                             <label>Nombre</label>
                             <input type="text" class="form-control mb-3" name="nombre">
-                        </div>
-                        <div class="col">
-                            <label>Área</label>
-                            <input type="text" class="form-control mb-3" name="area">
-                        </div>
-                        <div class="col">
-                            <label>Presupuesto</label>
-                            <input type="text" class="form-control mb-3" name="presupuesto">
                         </div>
                         <div class="col">
                             <label>Gobernador</label>
@@ -278,7 +273,6 @@
                                         <input type="text" class="form-control mb-3" name="presupuesto" value="{{i.presupuesto}}">
                                         <label>Gobernador</label>
                                         <input type="text" class="form-control mb-3" name="gobernador" value="{{i.gobernador}}">
-                                        <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar municipio</button>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Guardar</button>
