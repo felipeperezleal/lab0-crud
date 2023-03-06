@@ -26,7 +26,7 @@ CREATE TABLE `municipio` (
   `id_municipio` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `area` int DEFAULT NULL,
-  `presupuesto` int DEFAULT NULL,
+  `presupuesto` bigint DEFAULT NULL,
   `gobernador` int NOT NULL,
   PRIMARY KEY (`id_municipio`),
   UNIQUE KEY `gobernador_UNIQUE` (`gobernador`)
@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS `persona`;
 CREATE TABLE `persona` (
   `id_persona` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `telefono` int DEFAULT NULL,
+  `telefono` bigint DEFAULT NULL,
   `edad` varchar(45) NOT NULL,
   `sexo` varchar(45) DEFAULT NULL,
   `cdf` int DEFAULT NULL,
