@@ -56,6 +56,7 @@ def addPersona():
     edad = request.form['edad']
     sexo = request.form['sexo']
 
+    #Query and inserting data
     if nombre and telefono and edad and sexo:
         cursor = db.database.cursor()
         sql = "INSERT INTO persona (id_persona, nombre, telefono, edad, sexo) VALUES (%s, %s, %s, %s, %s)"
@@ -68,6 +69,7 @@ def addPersona():
 #Ruta para borrar persona
 @app.route('/deletePersona/<string:id>')
 def deletePersona(id):
+    #Query and deleting data
     cursor = db.database.cursor()
     sql = "DELETE FROM persona WHERE id_persona=%s"
     data = (id,)
@@ -88,6 +90,7 @@ def updatePersona(id):
     cdf = request.form['cdf']
     hogar = request.form['hogar']
 
+    #Query and updating data
     if nombre and telefono and edad and sexo:
         cursor = db.database.cursor()
         sql = "UPDATE persona SET nombre = %s, telefono = %s, edad = %s, sexo = %s, cdf = %s, hogar = %s  WHERE id_persona = %s"
@@ -110,6 +113,7 @@ def addVivienda():
     niveles = request.form['niveles']
     ubicacion = request.form['ubicacion']
 
+    #Query and inserting data
     if direccion and capacidad and niveles:
         cursor = db.database.cursor()
         sql = "INSERT INTO vivienda (id_vivienda, direccion, capacidad, niveles, ubicacion) VALUES (%s, %s, %s, %s, %s)"
@@ -122,6 +126,7 @@ def addVivienda():
 #Ruta para borrar vivienda
 @app.route('/deleteVivienda/<string:id>')
 def deleteVivienda(id):
+    #Query and deleting data
     cursor = db.database.cursor()
     sql = "DELETE FROM vivienda WHERE id_vivienda=%s"
     data = (id,)
@@ -139,6 +144,7 @@ def updateVivienda(id):
     niveles = request.form['niveles']
     ubicacion = request.form['ubicacion']
 
+    #Query and updating data
     if direccion and capacidad and niveles:
         cursor = db.database.cursor()
         sql = "UPDATE vivienda SET direccion = %s, capacidad = %s, niveles = %s, ubicacion = %s WHERE id_vivienda = %s"
@@ -159,6 +165,7 @@ def addMunicipio():
     nombre = request.form['nombre']
     gobernador = request.form['gobernador']
 
+    #Query and inserting data
     if nombre and gobernador:
         cursor = db.database.cursor()
         sql = "INSERT INTO municipio (id_municipio, nombre, gobernador) VALUES (%s, %s, %s)"
@@ -171,6 +178,7 @@ def addMunicipio():
 #Ruta para borrar municipio
 @app.route('/deleteMunicipio/<string:id>')
 def deleteMunicipio(id):
+    #Query and deleting data
     cursor = db.database.cursor()
     sql = "DELETE FROM municipio WHERE id_municipio=%s"
     dataMunicipio = (id,)
@@ -188,6 +196,7 @@ def updateMunicipio(id):
     presupuesto = request.form['presupuesto']
     gobernador = request.form['gobernador']
 
+    #Query and updating data
     if nombre and area and presupuesto and gobernador:
         cursor = db.database.cursor()
         sql = "UPDATE municipio SET nombre = %s, area = %s, presupuesto = %s, gobernador = %s WHERE id_municipio = %s"
