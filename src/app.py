@@ -33,7 +33,7 @@ def home():
     for record in myresult:
         insertObjectVivienda.append(dict(zip(columnNames, record)))
 
-    #Selecting persona objects
+    #Selecting municipio objects
     cursor.execute("SELECT * FROM municipio")
     myresult = cursor.fetchall()
     # Datos -> Dictionary
